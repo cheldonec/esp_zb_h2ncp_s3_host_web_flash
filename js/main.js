@@ -108,7 +108,7 @@ function applyManifest(m) {
     const d = m[chip];
     if (!d || !d.app) continue;
     const f = CHIPS[chip].files.find(f => f.offset === 0x20000);
-    if (f) { f.name = d.app; f.url = '/firmware/' + chip + '/' + d.app; }
+    if (f) { f.name = d.app; f.url = BASE_URL + '/firmware/' + chip + '/' + d.app; }
     const el = document.getElementById('fwInfo' + ucChip(chip));
     let h = '<div class="fw-version">v' + d.version;
     if (d.date) h += ' — ' + d.date;
