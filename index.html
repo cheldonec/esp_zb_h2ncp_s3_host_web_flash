@@ -12,33 +12,67 @@
   <p class="subtitle">Прошивка H2 и S3 независимо. Требуется Chrome/Edge с Web Serial API.</p>
 
   <div class="connection-guide">
-    <h3>🔌 Подключение ESP32-S3 (Шлюз) → ESP32-H2 (NCP)</h3>
-    <p class="subtitle">Перед прошивкой: удерживайте BOOT, нажмите RESET, отпустите BOOT — вход в режим загрузки.</p>
+  <h3>🔌 Подключение ESP32-S3 (Шлюз) → ESP32-H2 (NCP)</h3>
+  <p class="subtitle">Перед прошивкой: удерживайте BOOT, нажмите RESET, отпустите BOOT — вход в режим загрузки.</p>
 
-    <div class="wiring-diagram">
-      <!-- S3 Side -->
-      <div class="mcu s3">
-        <div class="mcu-label">ESP32-S3</div>
-        <div class="pinout">
-          <div class="pin">GPIO18 <span class="arrow">───</span></div>
-          <div class="pin">GPIO17 <span class="arrow">───</span></div>
+  <div class="wiring-diagram">
+    <!-- ESP32-S3 -->
+    <div class="mcu s3">
+      <div class="chip-badge">ESP32-S3</div>
+      <div class="pin-row">
+        <div class="pin-label tx">GPIO18 (TX)</div>
+        <div class="arrow-line">
+          <div class="arrow-head"></div>
         </div>
       </div>
-
-      <!-- H2 Side -->
-      <div class="mcu h2">
-        <div class="mcu-label">ESP32-H2</div>
-        <div class="pinout">
-          <div class="pin"><span class="wire-label">UART_TX</span> GPIO13</div>
-          <div class="pin"><span class="wire-label">UART_RX</span> GPIO14</div>
+      <div class="pin-row">
+        <div class="pin-label rx">GPIO17 (RX)</div>
+        <div class="arrow-line reverse">
+          <div class="arrow-head"></div>
         </div>
       </div>
     </div>
 
-    <div class="note">
-      <strong>Примечание:</strong> Подключите также GND (любой) и питание (3.3 В). Убедитесь, что H2 получает питание!
+    <!-- ESP32-H2 -->
+    <div class="mcu h2">
+      <div class="chip-badge">ESP32-H2</div>
+      <div class="pin-row">
+        <div class="arrow-line">
+          <div class="arrow-head"></div>
+        </div>
+        <div class="pin-label rx">GPIO14 (UART_RX)</div>
+      </div>
+      <div class="pin-row">
+        <div class="arrow-line reverse">
+          <div class="arrow-head"></div>
+        </div>
+        <div class="pin-label tx">GPIO13 (UART_TX)</div>
+      </div>
     </div>
   </div>
+
+  <div class="note">
+    <strong>Примечание:</strong> Подключите также GND (любой) и питание (3.3 В). Убедитесь, что H2 получает питание!
+  </div>
+</div>
+
+<div class="setup-guide">
+  <h3>📶 Настройка Wi-Fi после прошивки</h3>
+  <p class="subtitle">После первой прошивки ESP32-S3 запустит режим точки доступа для настройки сети.</p>
+
+  <ol class="setup-steps">
+    <li>На телефоне или ноутбуке найдите сеть Wi-Fi: <strong>HomeZigbee</strong></li>
+    <li>Подключитесь к ней с паролем: <strong>12345678</strong></li>
+    <li>Откройте в браузере: <a href="http://192.168.4.1" target="_blank">http://192.168.4.1</a></li>
+    <li>Выберите свою домашнюю сеть Wi-Fi и введите пароль</li>
+    <li>Нажмите «Сохранить» и <strong>перезагрузите ESP32-S3</strong></li>
+  </ol>
+
+  <div class="note">
+    После перезагрузки шлюз подключится к вашей сети и получит IP-адрес. 
+    Адрес веб-интерфейса будет показан в консоли S3.
+  </div>
+</div>
 
   <div class="split-container">
 

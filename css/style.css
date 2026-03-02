@@ -329,3 +329,185 @@ h1 {
     min-width: 100%;
   }
 }
+.connection-guide {
+  background: #f0f8ff;
+  border: 1px solid #c5e0ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  font-size: 0.95em;
+  color: #2c3e50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.connection-guide h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.15em;
+  color: #007acc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.connection-guide .subtitle {
+  margin: 0 0 14px 0;
+  font-style: italic;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.wiring-diagram {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.mcu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 180px;
+}
+
+.chip-badge {
+  font-weight: bold;
+  font-size: 0.95em;
+  background: #2c3e50;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pin-row {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.pin-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.pin-label.tx {
+  background: #d1ecf7;
+  color: #004a7c;
+  border: 1px solid #a0d8f1;
+}
+
+.pin-label.rx {
+  background: #e8f5e8;
+  color: #2e6c2e;
+  border: 1px solid #b8dbb8;
+}
+
+.arrow-line {
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(to right, #007acc, #40a9ff);
+  position: relative;
+  border-radius: 2px;
+  margin: 0 8px;
+}
+
+.arrow-line.reverse {
+  transform: scaleX(-1);
+}
+
+.arrow-head {
+  position: absolute;
+  right: -6px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #40a9ff;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.arrow-line.reverse .arrow-head {
+  right: auto;
+  left: -6px;
+  border-left: none;
+  border-right: 8px solid #40a9ff;
+}
+
+.note {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #aaa;
+  text-align: center;
+}
+
+.setup-guide {
+  background: #e8f5e8;
+  border: 1px solid #b8dbb8;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  font-size: 0.95em;
+  color: #2e6c2e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.setup-guide h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.15em;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.setup-guide .subtitle {
+  margin: 0 0 12px 0;
+  font-style: italic;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.setup-steps {
+  margin: 12px 0;
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+.setup-steps li {
+  margin-bottom: 6px;
+}
+
+.setup-steps strong {
+  color: #1b5e20;
+  font-weight: bold;
+}
+
+.setup-steps a {
+  color: #1b5e20;
+  text-decoration: underline;
+  font-family: monospace;
+}
+
+.setup-steps a:hover {
+  text-decoration: none;
+}
+
+.setup-guide .note {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #9ccc65;
+  text-align: center;
+}
