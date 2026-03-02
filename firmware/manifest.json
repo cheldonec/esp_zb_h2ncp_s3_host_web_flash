@@ -1,0 +1,16 @@
+{
+  "s3": {
+    "version": "0.0.1",
+    "date": "2025-04-05",
+    "size": 1169356,
+    "app": "zigbee_ncp_host.bin",
+    "notes": "ESP32-S3 Host с Zigbee NCP host прошивкой."
+  },
+  "h2": {
+    "version": "0.0.1",
+    "date": "2025-04-05",
+    "size": 1331400,
+    "app": "zigbee_ncp.bin",
+    "notes": "ESP32-H2 NCP прошивка."
+  }
+}

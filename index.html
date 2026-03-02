@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Прошивка ESP32 & Консоль</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>ESP32 Zigbee Gateway — Прошивка и Мониторинг</h1>
+  <p class="subtitle">Прошивка H2 и S3 независимо. Требуется Chrome/Edge с Web Serial API.</p>
+
+  <div class="warning">
+    Перед прошивкой: удерживайте BOOT, нажмите RESET, отпустите BOOT — вход в режим загрузки.
+  </div>
+
+  <div class="split-container">
+
+    <!-- === ПАНЕЛЬ: ESP32-S3 === -->
+    <div class="panel s3-panel">
+      <h2>🔧 ESP32-S3 (Шлюз)</h2>
+
+      <!-- Подключение -->
+      <div class="card">
+        <h3>🔌 Подключение</h3>
+        <div class="connected" id="connStatusS3"><span class="dot off"></span>Не подключено</div>
+        <div class="chip-info" id="chipInfoS3" style="display:none"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="btnConnectS3" onclick="doConnect('s3')">Подключиться</button>
+          <button class="btn btn-outline" id="btnDisconnectS3" onclick="doDisconnect('s3')" style="display:none">Отключиться</button>
+        </div>
+      </div>
+
+      <!-- Прошивка -->
+      <div class="card">
+        <h3>⚡ Прошивка</h3>
+        <div id="fwInfoS3"></div>
+        <p class="info">16 МБ флеш, DIO, 80 МГц</p>
+        <div class="files" id="fileListS3"></div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="chkEraseS3" checked>
+          <label for="chkEraseS3">Стереть флеш перед записью</label>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="btnFlashS3" onclick="doFlash('s3')" disabled>Прошить</button>
+          <button class="btn btn-danger" id="btnEraseS3" onclick="doEraseOnly('s3')" disabled>Только стереть</button>
+        </div>
+        <div class="progress-wrap" id="progressWrapS3" style="display:none">
+          <div class="progress-bar"><div class="progress-fill" id="progressFillS3"></div></div>
+          <div class="progress-text" id="progressTextS3">Готово</div>
+        </div>
+      </div>
+
+      <!-- Консоль -->
+      <div class="card">
+        <h3>📟 Консоль S3</h3>
+        <div class="console-toolbar">
+          <button class="btn btn-primary btn-sm" id="btnConOpenS3" onclick="conOpen('s3')">Открыть</button>
+          <button class="btn btn-danger btn-sm" id="btnConCloseS3" onclick="conClose('s3')" style="display:none">Закрыть</button>
+          <select id="conBaudS3">
+            <option value="115200" selected>115200</option>
+            <option value="9600">9600</option>
+            <option value="921600">921600</option>
+          </select>
+          <button class="btn btn-outline btn-sm" onclick="conClear('s3')">Очистить</button>
+          <button class="btn btn-outline btn-sm" onclick="conSaveLog('s3')">Сохранить</button>
+        </div>
+        <div class="connected" id="conStatusS3"><span class="dot off"></span>Консоль закрыта</div>
+        <div class="stats" id="conStatsS3"></div>
+        <div class="console" id="conOutputS3"></div>
+      </div>
+    </div>
+
+    <!-- === ПАНЕЛЬ: ESP32-H2 === -->
+    <div class="panel h2-panel">
+      <h2>🔧 ESP32-H2 (NCP)</h2>
+
+      <!-- Подключение -->
+      <div class="card">
+        <h3>🔌 Подключение</h3>
+        <div class="connected" id="connStatusH2"><span class="dot off"></span>Не подключено</div>
+        <div class="chip-info" id="chipInfoH2" style="display:none"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="btnConnectH2" onclick="doConnect('h2')">Подключиться</button>
+          <button class="btn btn-outline" id="btnDisconnectH2" onclick="doDisconnect('h2')" style="display:none">Отключиться</button>
+        </div>
+      </div>
+
+      <!-- Прошивка -->
+      <div class="card">
+        <h3>⚡ Прошивка</h3>
+        <div id="fwInfoH2"></div>
+        <p class="info">4 МБ флеш, DIO, 48 МГц</p>
+        <div class="files" id="fileListH2"></div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="chkEraseH2" checked>
+          <label for="chkEraseH2">Стереть флеш перед записью</label>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="btnFlashH2" onclick="doFlash('h2')" disabled>Прошить</button>
+          <button class="btn btn-danger" id="btnEraseH2" onclick="doEraseOnly('h2')" disabled>Только стереть</button>
+        </div>
+        <div class="progress-wrap" id="progressWrapH2" style="display:none">
+          <div class="progress-bar"><div class="progress-fill" id="progressFillH2"></div></div>
+          <div class="progress-text" id="progressTextH2">Готово</div>
+        </div>
+      </div>
+
+      <!-- Консоль -->
+      <div class="card">
+        <h3>📟 Консоль H2</h3>
+        <div class="console-toolbar">
+          <button class="btn btn-primary btn-sm" id="btnConOpenH2" onclick="conOpen('h2')">Открыть</button>
+          <button class="btn btn-danger btn-sm" id="btnConCloseH2" onclick="conClose('h2')" style="display:none">Закрыть</button>
+          <select id="conBaudH2">
+            <option value="115200" selected>115200</option>
+            <option value="9600">9600</option>
+            <option value="921600">921600</option>
+          </select>
+          <button class="btn btn-outline btn-sm" onclick="conClear('h2')">Очистить</button>
+          <button class="btn btn-outline btn-sm" onclick="conSaveLog('h2')">Сохранить</button>
+        </div>
+        <div class="connected" id="conStatusH2"><span class="dot off"></span>Консоль закрыта</div>
+        <div class="stats" id="conStatsH2"></div>
+        <div class="console" id="conOutputH2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Лог операций -->
+  <div class="card">
+    <h2>📋 Журнал действий</h2>
+    <div class="log" id="log"></div>
+  </div>
+</div>
+
+<!-- Загрузка esptool-js -->
+<script type="module">
+  import { ESPLoader, Transport } from 'https://unpkg.com/esptool-js@0.5.4/bundle.js';
+  window.ESPLoader = ESPLoader;
+  window.Transport = Transport;
+</script>
+
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/console.js"></script>
+
+</body>
+</html>

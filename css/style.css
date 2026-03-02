@@ -1,0 +1,331 @@
+/* style.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.6em;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+.warning {
+  background: #ffeaa7;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  color: #744210;
+  text-align: center;
+}
+
+.split-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.panel {
+  flex: 1;
+  min-width: 500px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel h2 {
+  margin-bottom: 0;
+  font-size: 1.3em;
+  color: #2c3e50;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 8px;
+}
+
+/* === ЕДИНАЯ ВЫСОТА КАРТОЧЕК === */
+
+/* Все карточки — флекс-контейнеры */
+.card {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 {
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  color: #2c3e50;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+/* === КАРТОЧКА 1: ПОДКЛЮЧЕНИЕ — компактная === */
+.s3-panel > .card:nth-child(2),
+.h2-panel > .card:nth-child(2) {
+  height: 150px;
+  min-height: 60px;
+}
+
+/* === КАРТОЧКА 2: ПРОШИВКА — фиксированная высота === */
+.s3-panel > .card:nth-child(3),
+.h2-panel > .card:nth-child(3) {
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Информация о прошивке */
+#fwInfoS3,
+#fwInfoH2 {
+  font-size: 0.95em;
+  color: #007bff;
+  margin-bottom: 8px;
+}
+
+.fw-version {
+  padding: 4px 8px;
+  background: #e7f2ff;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Текст "16 МБ флеш..." */
+.card .info {
+  font-size: 0.9em;
+  color: #666;
+  margin: 6px 0 10px;
+}
+
+/* Список файлов — с прокруткой */
+.files {
+  flex: 1;
+  min-height: 120px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.9em;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.files::-webkit-scrollbar {
+  width: 6px;
+}
+
+.files::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.file-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px dashed #eee;
+  font-size: 0.9em;
+}
+
+.file-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.file-status.pending { background: #ffc107; }
+.file-status.loaded { background: #28a745; }
+.file-status.error { background: #dc3545; }
+
+.file-offset {
+  color: #888;
+  font-weight: bold;
+  min-width: 70px;
+}
+
+.file-name {
+  flex: 1;
+  margin: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  color: #555;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Чекбокс */
+.checkbox-row {
+  margin: 10px 0;
+  font-size: 0.95em;
+}
+
+.checkbox-row input {
+  margin-right: 6px;
+}
+
+/* Кнопки */
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.2s;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0069d9;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.btn-outline:hover {
+  background: #e7f2ff;
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.85em;
+}
+
+/* Прогресс-бар */
+.progress-wrap {
+  margin-top: 12px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: #28a745;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.9em;
+  margin-top: 6px;
+  color: #555;
+}
+
+/* Консоль */
+.console-toolbar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.console {
+  flex: 1;
+  min-height: 150px;
+  max-height: 150px;
+  background: #1e1e1e;
+  color: #f1f1f1;
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.console span.E { color: #ff5555; }
+.console span.W { color: #ffbb66; }
+.console span.I { color: #8be972; }
+.console span.boot { color: #8be9fd; }
+
+/* Лог действий */
+.log {
+  height: 120px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 0.9em;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* Цвета логов */
+.info { color: #007bff; }
+.ok { color: #28a745; }
+.warn { color: #ffc107; }
+.err { color: #dc3545; }
+
+/* Адаптивность */
+@media (max-width: 900px) {
+  .split-container {
+    flex-direction: column;
+  }
+  .panel {
+    min-width: 100%;
+  }
+}
