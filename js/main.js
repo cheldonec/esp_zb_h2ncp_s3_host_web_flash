@@ -1,4 +1,6 @@
 // js/main.js
+// Базовый путь для GitHub Pages
+const BASE_URL = '/esp_zb_h2ncp_s3_host_web_flash';
 import { ESPLoader, Transport } from 'https://unpkg.com/esptool-js@0.5.4/bundle.js';
 
 const CHIPS = {
@@ -17,12 +19,12 @@ const CHIPS = {
     flashMode: 'dio',
     flashFreq: '80m',
     files: [
-      { name: 'bootloader.bin',       offset: 0x0,       url: '/firmware/s3/bootloader.bin' },
-      { name: 'partition-table.bin',  offset: 0x8000,    url: '/firmware/s3/partition-table.bin' },
-      { name: 'zigbee_ncp_host.bin',  offset: 0x20000,   url: '/firmware/s3/zigbee_ncp_host.bin' },
-      { name: 'spiffs_ui.bin',        offset: 0x820000,  url: '/firmware/s3/spiffs_ui.bin' },
-      { name: 'spiffs_quirks.bin',    offset: 0xE20000,  url: '/firmware/s3/spiffs_quirks.bin' },
-      { name: 'ota_data_initial.bin',  offset:0x1b000,   url: '/firmware/s3/ota_data_initial.bin' },
+      { name: 'bootloader.bin',       offset: 0x0,       url: BASE_URL + '/firmware/s3/bootloader.bin' },
+      { name: 'partition-table.bin',  offset: 0x8000,    url: BASE_URL + '/firmware/s3/partition-table.bin' },
+      { name: 'zigbee_ncp_host.bin',  offset: 0x20000,   url: BASE_URL + '/firmware/s3/zigbee_ncp_host.bin' },
+      { name: 'spiffs_ui.bin',        offset: 0x820000,  url: BASE_URL + '/firmware/s3/spiffs_ui.bin' },
+      { name: 'spiffs_quirks.bin',    offset: 0xE20000,  url: BASE_URL + '/firmware/s3/spiffs_quirks.bin' },
+      { name: 'ota_data_initial.bin',  offset:0x1b000,   url: BASE_URL + '/firmware/s3/ota_data_initial.bin' },
     ],
   },
 
@@ -41,10 +43,10 @@ const CHIPS = {
     flashMode: 'dio',
     flashFreq: '48m',
     files: [
-      { name: 'bootloader.bin',         offset: 0x0,       url: '/firmware/h2/bootloader.bin' },
-      { name: 'partition-table.bin',    offset: 0x8000,    url: '/firmware/h2/partition-table.bin' },
-      { name: 'zigbee_ncp.bin',         offset: 0x30000,   url: '/firmware/h2/zigbee_ncp.bin' },
-      { name: 'ota_data_initial.bin',   offset: 0x29000,   url: '/firmware/h2/ota_data_initial.bin' },
+      { name: 'bootloader.bin',         offset: 0x0,       url: BASE_URL + '/firmware/h2/bootloader.bin' },
+      { name: 'partition-table.bin',    offset: 0x8000,    url: BASE_URL + '/firmware/h2/partition-table.bin' },
+      { name: 'zigbee_ncp.bin',         offset: 0x30000,   url: BASE_URL + '/firmware/h2/zigbee_ncp.bin' },
+      { name: 'ota_data_initial.bin',   offset: 0x29000,   url: BASE_URL + '/firmware/h2/ota_data_initial.bin' },
     ],
   },
 };
@@ -95,7 +97,7 @@ function setProgress(chip, pct, text) {
 /* ── Manifest ──────────────────────────────── */
 async function loadManifest() {
   try {
-    const r = await fetch('/firmware/manifest.json?t=' + Date.now());
+    const r = await fetch(BASE_URL + '/firmware/manifest.json?t=' + Date.now());
     return r.ok ? await r.json() : null;
   } catch (e) { return null; }
 }
