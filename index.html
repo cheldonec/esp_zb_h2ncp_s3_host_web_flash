@@ -11,8 +11,33 @@
   <h1>ESP32 Zigbee Gateway — Прошивка и Мониторинг</h1>
   <p class="subtitle">Прошивка H2 и S3 независимо. Требуется Chrome/Edge с Web Serial API.</p>
 
-  <div class="warning">
-    Перед прошивкой: удерживайте BOOT, нажмите RESET, отпустите BOOT — вход в режим загрузки.
+  <div class="connection-guide">
+    <h3>🔌 Подключение ESP32-S3 (Шлюз) → ESP32-H2 (NCP)</h3>
+    <p class="subtitle">Перед прошивкой: удерживайте BOOT, нажмите RESET, отпустите BOOT — вход в режим загрузки.</p>
+
+    <div class="wiring-diagram">
+      <!-- S3 Side -->
+      <div class="mcu s3">
+        <div class="mcu-label">ESP32-S3</div>
+        <div class="pinout">
+          <div class="pin">GPIO18 <span class="arrow">───</span></div>
+          <div class="pin">GPIO17 <span class="arrow">───</span></div>
+        </div>
+      </div>
+
+      <!-- H2 Side -->
+      <div class="mcu h2">
+        <div class="mcu-label">ESP32-H2</div>
+        <div class="pinout">
+          <div class="pin"><span class="wire-label">UART_TX</span> GPIO13</div>
+          <div class="pin"><span class="wire-label">UART_RX</span> GPIO14</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Примечание:</strong> Подключите также GND (любой) и питание (3.3 В). Убедитесь, что H2 получает питание!
+    </div>
   </div>
 
   <div class="split-container">
