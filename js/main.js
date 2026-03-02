@@ -1,8 +1,8 @@
 // js/main.js
+
+import { ESPLoader, Transport } from 'https://unpkg.com/esptool-js@0.5.4/bundle.js';
 // Базовый путь для GitHub Pages
 const BASE_URL = '/esp_zb_h2ncp_s3_host_web_flash';
-import { ESPLoader, Transport } from 'https://unpkg.com/esptool-js@0.5.4/bundle.js';
-
 const CHIPS = {
   // === ESP32-S3 (HOST) ===
   /*
