@@ -1,2 +1,4 @@
-/firmware/*.bin
+/firmware/h2/*.bin
+  Content-Type: application/octet-stream
+/firmware/s3/*.bin
   Content-Type: application/octet-stream
